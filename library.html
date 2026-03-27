@@ -254,21 +254,21 @@ const EMOJIS = {'Finance & Trading':'📈','Power & Strategy':'⚔️','History'
 
 const DEF = [
   // ── PREVIOUSLY IN APP (analyzed/read) ──
-  {id:1,title:"Alpha Trader",author:"Brent Donnelly",category:"Finance & Trading",status:"analyzed",rating:5,notes:"Core FX mindset."},
-  {id:2,title:"The Art of Currency Trading",author:"Brent Donnelly",category:"Finance & Trading",status:"analyzed",rating:5,notes:""},
-  {id:3,title:"Market Wizards",author:"Jack Schwager",category:"Finance & Trading",status:"read",rating:5,notes:""},
+  {id:1,title:"Alpha Trader",author:"Brent Donnelly",category:"Finance & Trading",status:"analyzed",rating:5,notes:"Core FX mindset. Required reading for my approach. Best book for active FX traders with macro context."},
+  {id:2,title:"The Art of Currency Trading",author:"Brent Donnelly",category:"Finance & Trading",status:"analyzed",rating:5,notes:"Practical FX execution. Pairs perfectly with Alpha Trader. Read second in Donnelly sequence."},
+  {id:3,title:"Market Wizards",author:"Jack Schwager",category:"Finance & Trading",status:"read",rating:5,notes:"Pattern across all top traders: risk management first, edge second. Timeless."},
   {id:4,title:"New Market Wizards",author:"Jack Schwager",category:"Finance & Trading",status:"read",rating:4,notes:""},
   {id:5,title:"Hedge Fund Market Wizards",author:"Jack Schwager",category:"Finance & Trading",status:"read",rating:4,notes:""},
-  {id:6,title:"Trading in the Zone",author:"Mark Douglas",category:"Psychology",status:"analyzed",rating:5,notes:"Probability mindset."},
-  {id:7,title:"Best Loser Wins",author:"Tom Hougaard",category:"Finance & Trading",status:"analyzed",rating:5,notes:"Changed perspective on losses."},
-  {id:8,title:"The Alchemy of Finance",author:"George Soros",category:"Finance & Trading",status:"analyzed",rating:4,notes:"Reflexivity theory."},
-  {id:9,title:"Reminiscences of a Stock Operator",author:"Edwin Lefevre",category:"Finance & Trading",status:"read",rating:5,notes:"Jesse Livermore. Timeless."},
+  {id:6,title:"Trading in the Zone",author:"Mark Douglas",category:"Psychology",status:"analyzed",rating:5,notes:"Probability mindset. Each trade is just one of a series of outcomes. Essential for consistent execution."},
+  {id:7,title:"Best Loser Wins",author:"Tom Hougaard",category:"Finance & Trading",status:"analyzed",rating:5,notes:"Changed perspective on losses. The trader who accepts pain fastest wins. Behavioral edge over retail."},
+  {id:8,title:"The Alchemy of Finance",author:"George Soros",category:"Finance & Trading",status:"analyzed",rating:4,notes:"Reflexivity theory — markets shape fundamentals and vice versa. Applied to macro FX positioning."},
+  {id:9,title:"Reminiscences of a Stock Operator",author:"Edwin Lefevre",category:"Finance & Trading",status:"read",rating:5,notes:"Jesse Livermore. Timeless. Patience, tape reading, sizing into winners. Still the best trading biography."},
   {id:10,title:"50 in 50",author:"Brent Donnelly",category:"Finance & Trading",status:"tbr",rating:0,notes:"Read after Alpha Trader and Art of Currency Trading."},
-  {id:11,title:"Trade Wars Are Class Wars",author:"Klein & Pettis",category:"Geopolitics",status:"analyzed",rating:4,notes:""},
-  {id:12,title:"The Dollar Trap",author:"Eswar Prasad",category:"Geopolitics",status:"analyzed",rating:4,notes:""},
-  {id:13,title:"The Death of Money",author:"James Rickards",category:"Finance & Trading",status:"analyzed",rating:4,notes:""},
-  {id:14,title:"Currency Wars",author:"James Rickards",category:"Finance & Trading",status:"read",rating:4,notes:""},
-  {id:15,title:"The 48 Laws of Power",author:"Robert Greene",category:"Power & Strategy",status:"analyzed",rating:5,notes:"Applied to trading and wealth building."},
+  {id:11,title:"Trade Wars Are Class Wars",author:"Klein & Pettis",category:"Geopolitics",status:"analyzed",rating:4,notes:"Global imbalances driven by domestic class conflict. Explains USD dominance and China's export model. Key macro FX framework."},
+  {id:12,title:"The Dollar Trap",author:"Eswar Prasad",category:"Geopolitics",status:"analyzed",rating:4,notes:"Why the world cannot escape the dollar even when it wants to. Explains reserve currency dynamics for macro FX positioning."},
+  {id:13,title:"The Death of Money",author:"James Rickards",category:"Finance & Trading",status:"analyzed",rating:4,notes:"Coming collapse of the international monetary system. Gold, SDRs, and system reset thesis. Extreme scenario preparation."},
+  {id:14,title:"Currency Wars",author:"James Rickards",category:"Finance & Trading",status:"read",rating:4,notes:"How nations compete through currency devaluation. Historical cycles of currency conflict. Foundation for macro FX worldview."},
+  {id:15,title:"The 48 Laws of Power",author:"Robert Greene",category:"Power & Strategy",status:"analyzed",rating:5,notes:"All Greene books read and applied. Laws 1, 3, 15, 16, 33 most relevant to trading psychology, wealth building, and protecting position from visible success."},
   {id:16,title:"The Art of War",author:"Sun Tzu",category:"Power & Strategy",status:"read",rating:5,notes:"Maps to trading. Schwerpunkt. OODA."},
   {id:17,title:"The Prince",author:"Machiavelli",category:"Power & Strategy",status:"read",rating:4,notes:""},
   {id:18,title:"The Sovereign Individual",author:"Davidson & Rees-Mogg",category:"Geopolitics",status:"tbr",rating:0,notes:"Priority. Multi-jurisdictional sovereignty framework."},
@@ -614,11 +614,11 @@ function renderStats(){
 }
 
 function renderFilters(){
-  document.getElementById('filterRow').innerHTML=CATS.map(c=>`<button class="filter-btn ${libFilter===c?'active':''}" onclick="setLF(${JSON.stringify(c)})">${c}</button>`).join('');
-  document.getElementById('sugFilterRow').innerHTML=CATS.map(c=>`<button class="filter-btn ${sugFilter===c?'active':''}" onclick="setSF(${JSON.stringify(c)})">${c}</button>`).join('');
+  document.getElementById('filterRow').innerHTML=CATS.map((c,i)=>`<button class="filter-btn ${libFilter===c?'active':''}" onclick="setLF(${i})">${c}</button>`).join('');
+  document.getElementById('sugFilterRow').innerHTML=CATS.map((c,i)=>`<button class="filter-btn ${sugFilter===c?'active':''}" onclick="setSF(${i})">${c}</button>`).join('');
 }
-function setLF(c){libFilter=c;renderFilters();renderBooks();}
-function setSF(c){sugFilter=c;renderFilters();renderSugg();}
+function setLF(i){libFilter=CATS[i];renderFilters();renderBooks();}
+function setSF(i){sugFilter=CATS[i];renderFilters();renderSugg();}
 
 function renderBooks(){
   const q=document.getElementById('searchInput').value.toLowerCase();
